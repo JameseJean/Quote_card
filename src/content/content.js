@@ -1,18 +1,41 @@
-// 监听来自background的消息
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === "GENERATE_CARD") {
-    // 打开卡片生成器弹窗
-    chrome.runtime.sendMessage({
-      type: "OPEN_POPUP",
-      text: request.text
-    });
-  }
-});
+// 保存选中的文字集合
+let selectedTexts = new Set();
 
 // 监听文字选择
 document.addEventListener('mouseup', () => {
-  const selectedText = window.getSelection().toString().trim();
-  if (selectedText) {
-    // 可以在这里添加自定义UI提示
+  const selection = window.getSelection();
+  const text = selection.toString().trim();
+  
+  // 按住Shift键可以多选
+  if (text && window.event.shiftKey) {
+    selectedTexts.add(text);
+  } else if (text) {
+    selectedTexts.clear();
+    selectedTexts.add(text);
+  }
+});
+
+// 监听快捷键
+document.addEventListener('keydown', (e) => {
+  // Alt + S: 选择文字
+  if (e.altKey && e.key === 's') {
+    const selection = window.getSelection();
+    const text = selection.toString().trim();
+    if (text) selectedTexts.add(text);
+  }
+  
+  // Alt + C: 清除选择
+  if (e.altKey && e.key === 'c') {
+    selectedTexts.clear();
+  }
+});
+
+// 监听消息
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.type === 'GET_SELECTED_TEXT') {
+    chrome.runtime.sendMessage({
+      type: 'SELECTED_TEXT',
+      texts: Array.from(selectedTexts)
+    });
   }
 }); 
