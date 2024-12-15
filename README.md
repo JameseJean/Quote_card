@@ -7,7 +7,30 @@
 - 网页文字选择并生成卡片
 - 多种卡片模板
 - 自定义样式设置
-- 导出多种图片格式
+- 导出多种图片格式(PNG/JPG/WebP)
+- 历史记录与撤销/重做
+- 模板导入导出
+- 图片质量和缩放设置
+
+## 使用说明
+
+1. 安装扩展
+   - 在Chrome扩展商店搜索"金句卡片生成器"并安装
+   - 或下载发布包,打开Chrome扩展管理页面,加载已解压的扩展程序
+
+2. 基本使用
+   - 在网页中选择文字
+   - 右键点击,选择"生成金句卡片"
+   - 在弹出窗口中编辑文字
+   - 选择模板和调整样式
+   - 点击导出按钮生成图片
+
+3. 高级功能
+   - 自定义模板样式
+   - 导入/导出模板
+   - 调整导出图片质量
+   - 查看历史记录
+   - 撤销/重做操作
 
 ## 开发说明
 
@@ -22,7 +45,7 @@
 > pnpm config set store-dir "D:\pnpm-store"  # 或其他路径
 > ```
 
-### 安装依赖
+### 安装���赖
 
 ```bash
 # 安装 pnpm
@@ -74,16 +97,18 @@ src/
 ### 技术栈
 
 - React 18
+- TypeScript
 - TailwindCSS
 - Vite
-- TypeScript
+- Chrome Extension API
 
 ## 贡献指南
 
 1. Fork 本仓库
-2. 创建特性分支
-3. 提交变更
-4. 发起 Pull Request
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交变更 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 发起 Pull Request
 
 ## 许可证
 
@@ -142,4 +167,3 @@ git checkout -b dev
 npm run dev
 ```
 
-需要我详细解释某个配置吗？或者继续完善其他部分?
