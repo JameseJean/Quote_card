@@ -10,6 +10,7 @@ import { Loading } from '../components/Loading';
 import { useToast } from '../hooks/useToast';
 import { ExportSettings } from './components/ExportSettings';
 import { History } from './components/History';
+import { CardTemplate } from '../types/template';
 
 function Popup() {
   const [texts, setTexts] = useState(['']);
@@ -96,6 +97,10 @@ function Popup() {
     }
   };
 
+  const handleTemplateUpdate = (updatedTemplate: CardTemplate) => {
+    // 更新模板的逻辑
+  };
+
   return (
     <Layout>
       {loading && <Loading fullscreen text="正在导出..." />}
@@ -114,6 +119,7 @@ function Popup() {
           templates={templates}
           currentTemplate={currentTemplate}
           onTemplateSelect={setCurrentTemplate}
+          onTemplateUpdate={handleTemplateUpdate}
           canUndo={canUndo}
           canRedo={canRedo}
           onUndo={undo}

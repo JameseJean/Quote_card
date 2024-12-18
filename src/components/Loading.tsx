@@ -1,13 +1,11 @@
 import React from 'react';
 
-interface LoadingProps {
-  fullscreen?: boolean;
-  text?: string;
-}
-
-export const Loading: React.FC<LoadingProps> = ({
+export const Loading = ({
   fullscreen = false,
   text = '加载中...',
+}: {
+  fullscreen?: boolean;
+  text?: string;
 }) => {
   const content = (
     <div className="flex flex-col items-center justify-center space-y-2">

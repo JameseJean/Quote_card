@@ -1,10 +1,6 @@
 // 创建右键菜单
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: "generateCard",
-    title: "生成金句卡片",
-    contexts: ["selection"]
-  });
+  console.log('金句卡片生成器已安装');
 });
 
 // 处理右键菜单点击

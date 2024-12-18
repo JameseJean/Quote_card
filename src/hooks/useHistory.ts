@@ -3,7 +3,6 @@ import { HistoryRecord, HistoryState } from '../types/history';
 import { CardTemplate } from '../types/template';
 
 const MAX_HISTORY = 50; // 最大历史记录数
-
 export const useHistory = () => {
   const [history, setHistory] = useState<HistoryState>({
     records: [],
@@ -34,7 +33,7 @@ export const useHistory = () => {
       newRecord,
     ].slice(-MAX_HISTORY);
 
-    const newState = {
+    const newState: HistoryState = {
       records: newRecords,
       currentIndex: newRecords.length - 1,
     };

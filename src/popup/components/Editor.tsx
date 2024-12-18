@@ -43,6 +43,10 @@ export const Editor: React.FC<EditorProps> = ({
     onChange(newTexts);
   };
 
+  const handleTemplateUpdate = (updatedTemplate: CardTemplate) => {
+    // 更新模板的逻辑
+  };
+
   return (
     <div className="w-1/2 p-4 border-r overflow-y-auto">
       {/* 添加撤销/重做按钮 */}
@@ -114,7 +118,7 @@ export const Editor: React.FC<EditorProps> = ({
         onSelect={onTemplateSelect}
       />
 
-      {/* 添加样式���辑器 */}
+      {/* 添加样式编辑器 */}
       <StyleEditor
         template={currentTemplate}
         onUpdate={onTemplateUpdate}
