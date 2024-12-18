@@ -27,12 +27,19 @@ export default defineConfig({
           );
           console.log('✓ manifest.json copied');
           
+          // 复制 popup.html
+          copyFileSync(
+            resolve(__dirname, 'src/popup/popup.html'),
+            resolve(__dirname, 'dist/popup.html')
+          );
+          console.log('✓ popup.html copied');
+
           // 复制 options.html
-          // copyFileSync(
-          //   resolve(__dirname, 'src/options/index.html'),
-          //   resolve(__dirname, 'dist/options.html')
-          // );
-          // console.log('✓ options.html copied');
+          copyFileSync(
+            resolve(__dirname, 'src/options/options.html'),
+            resolve(__dirname, 'dist/options.html')
+          );
+          console.log('✓ options.html copied');
 
           // 确保目标文件夹存在
           const iconsDir = resolve(__dirname, 'dist/icons');
@@ -61,8 +68,8 @@ export default defineConfig({
     emptyOutDir: true, // 构建前清空目录
     rollupOptions: {
       input: {
-        // popup: resolve(__dirname, 'src/popup/index.html'),
-        // options: resolve(__dirname, 'src/options/index.html'),
+        // popup: resolve(__dirname, 'src/popup/popup.html'),
+        // options: resolve(__dirname, 'src/options/options.html'),
         background: resolve(__dirname, 'src/background/background.js'),
         // content: resolve(__dirname, 'src/content/content.js'),
       },
@@ -71,14 +78,14 @@ export default defineConfig({
           if (chunk.name === 'options') {
             return 'options.html';
           }
-          if(['background', 'content'].includes(chunk.name)) {
+          if (['background', 'content'].includes(chunk.name)) {
             return '[name].js';
           }
           return 'assets/[name].[hash].js';
         },
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: assetInfo => {
-          if(assetInfo.name?.endsWith('.html')) {
+          if (assetInfo.name?.endsWith('.html')) {
             return '[name][extname]';
           }
           return 'assets/[name].[hash][extname]';
