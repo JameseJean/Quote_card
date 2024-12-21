@@ -26,13 +26,6 @@ export default defineConfig({
             resolve(__dirname, 'dist/manifest.json')
           );
           console.log('✓ manifest.json copied');
-          
-          // 复制 popup.html
-          copyFileSync(
-            resolve(__dirname, 'src/popup/popup.html'),
-            resolve(__dirname, 'dist/popup.html')
-          );
-          console.log('✓ popup.html copied');
 
           // 复制 options.html
           copyFileSync(
@@ -40,6 +33,15 @@ export default defineConfig({
             resolve(__dirname, 'dist/options.html')
           );
           console.log('✓ options.html copied');
+
+          // 复制 popup.html
+          copyFileSync(
+            resolve(__dirname, 'src/popup/popup.html'),
+            resolve(__dirname, 'dist/popup.html')
+          );
+          console.log('✓ popup.html copied');
+
+
 
           // 确保目标文件夹存在
           const iconsDir = resolve(__dirname, 'dist/icons');
@@ -68,10 +70,10 @@ export default defineConfig({
     emptyOutDir: true, // 构建前清空目录
     rollupOptions: {
       input: {
-        // popup: resolve(__dirname, 'src/popup/popup.html'),
+         popup: resolve(__dirname, 'src/popup/popup.html'),
         // options: resolve(__dirname, 'src/options/options.html'),
         background: resolve(__dirname, 'src/background/background.js'),
-        // content: resolve(__dirname, 'src/content/content.js'),
+         content: resolve(__dirname, 'src/content/content.js'),
       },
       output: {
         entryFileNames: chunk => {

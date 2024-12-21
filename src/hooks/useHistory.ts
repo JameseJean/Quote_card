@@ -39,7 +39,6 @@ export const useHistory = () => {
     };
 
     await chrome.storage.local.set({ history: newState });
-    setHistory(newState);
   };
 
   // 撤销

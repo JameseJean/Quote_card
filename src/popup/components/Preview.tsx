@@ -123,14 +123,14 @@ export const Preview: React.FC<PreviewProps> = ({ texts, template, onExport }) =
       <div 
         ref={previewRef}
         style={{
-          width: `${container.width}px`,
-          height: `${container.height}px`,
-          background: container.background,
-          padding: container.padding,
-          borderRadius: container.borderRadius,
-          boxShadow: effects?.shadow,
-          border: effects?.border,
-          opacity: effects?.opacity,
+          width: `${template.styles.container.width ?? 300}px`,
+          height: `${template.styles.container.height ?? 200}px`,
+          background: template.styles.container.background,
+          padding: template.styles.container.padding,
+          borderRadius: template.styles.container.borderRadius,
+          boxShadow: template.styles.effects?.shadow,
+          border: template.styles.effects?.border,
+          opacity: template.styles.effects?.opacity,
         }}
         className="mx-auto"
       >

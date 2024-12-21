@@ -32,10 +32,10 @@ document.addEventListener('keydown', (e) => {
 
 // 监听消息
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log('Received message:', request);
   if (request.type === 'GET_SELECTED_TEXT') {
-    chrome.runtime.sendMessage({
-      type: 'SELECTED_TEXT',
-      texts: Array.from(selectedTexts)
-    });
+    const texts = Array.from(selectedTexts);
+    console.log('Selected texts:', texts);
+    sendResponse({ texts });
   }
 }); 

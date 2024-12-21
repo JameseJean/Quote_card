@@ -29,25 +29,20 @@ function Popup() {
   const [exportCallback, setExportCallback] = useState<((url: string) => void) | null>(null);
 
   useEffect(() => {
-    const messageListener = (request: any) => {
+    chrome.runtime.onMessage.addListener((request) => {
       if (request.type === 'SELECTED_TEXT') {
+        console.log('Selected texts received:', request.texts);
         setTexts(request.texts.length > 0 ? request.texts : ['']);
-      }
-    };
-
-    chrome.runtime.onMessage.addListener(messageListener);
-
-    // 获取当前标签页的选中文字
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const currentTab = tabs[0];
-      if (currentTab?.id) {
-        chrome.tabs.sendMessage(currentTab.id, { type: 'GET_SELECTED_TEXT' });
       }
     });
 
-    return () => {
-      chrome.runtime.onMessage.removeListener(messageListener);
-    };
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs.length > 0 && tabs[0].id !== undefined) {
+        chrome.tabs.sendMessage(tabs[0].id, { type: 'GET_SELECTED_TEXT' });
+      } else {
+        console.error('No active tab found or tab ID is undefined');
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -101,6 +96,8 @@ function Popup() {
     // 更新模板的逻辑
   };
 
+  console.log('Received selected texts:', texts);
+
   return (
     <Layout>
       {loading && <Loading fullscreen text="正在导出..." />}
@@ -142,6 +139,7 @@ function Popup() {
           />
         </div>
       </div>
+      {console.log('Rendering texts:', texts)}
     </Layout>
   );
 }
