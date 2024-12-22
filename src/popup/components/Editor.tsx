@@ -29,16 +29,19 @@ export const Editor: React.FC<EditorProps> = ({
   onRedo,
 }) => {
   const handleTextChange = (index: number, value: string) => {
+    console.log(`Changing text at index ${index}:`, value); // 调试点
     const newTexts = [...texts];
     newTexts[index] = value;
     onChange(newTexts);
   };
 
   const handleAddText = () => {
+    console.log('Adding new text field'); // 调试点
     onChange([...texts, '']);
   };
 
   const handleRemoveText = (index: number) => {
+    console.log(`Removing text at index ${index}`); // 调试点
     const newTexts = texts.filter((_, i) => i !== index);
     onChange(newTexts);
   };

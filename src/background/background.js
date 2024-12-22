@@ -11,8 +11,8 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // 处理右键菜单点击
 chrome.contextMenus.onClicked.addListener((info, tab) => {
+  console.log('Context menu clicked:', info);
   if (info.menuItemId === "generateCard") {
-    // 发送消息到内容脚本，获取选中的文本
     chrome.tabs.sendMessage(tab.id, {
       type: "GET_SELECTED_TEXT"
     }, (response) => {

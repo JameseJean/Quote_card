@@ -39,13 +39,7 @@
 - Node.js 16+
 - pnpm 8+ (推荐)
 
-> 提示: 默认情况下pnpm会在C盘用户目录创建全局store。如果想更改位置:
-> ```bash
-> # 修改store位置到其他盘
-> pnpm config set store-dir "D:\pnpm-store"  # 或其他路径
-> ```
-
-### 安装���赖
+### 安装依赖
 
 ```bash
 # 安装 pnpm

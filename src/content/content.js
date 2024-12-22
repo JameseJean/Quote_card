@@ -15,21 +15,6 @@ document.addEventListener('mouseup', () => {
   }
 });
 
-// 监听快捷键
-document.addEventListener('keydown', (e) => {
-  // Alt + S: 选择文字
-  if (e.altKey && e.key === 's') {
-    const selection = window.getSelection();
-    const text = selection.toString().trim();
-    if (text) selectedTexts.add(text);
-  }
-  
-  // Alt + C: 清除选择
-  if (e.altKey && e.key === 'c') {
-    selectedTexts.clear();
-  }
-});
-
 // 监听消息
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
@@ -38,4 +23,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('Selected texts:', texts);
     sendResponse({ texts });
   }
-}); 
+});
+
+console.log('Content script loaded'); 
